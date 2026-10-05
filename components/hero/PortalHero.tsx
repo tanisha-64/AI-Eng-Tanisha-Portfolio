@@ -255,14 +255,26 @@ export default function PortalHero() {
         {/* Bottom Edge Metadata & Action Links */}
         <motion.div
           style={{ opacity: cornerOpacity }}
-          className="relative z-40 mx-auto flex w-full max-w-7xl flex-col justify-between gap-4 border-t border-[rgba(243,240,234,0.1)] pt-3 sm:flex-row sm:items-center font-mono text-[11px] uppercase tracking-[0.14em]"
+          className="relative z-40 mx-auto flex w-full max-w-7xl flex-col justify-between gap-3 border-t border-[rgba(243,240,234,0.1)] pt-3 sm:flex-row sm:items-center font-mono text-[11px] uppercase tracking-[0.14em]"
         >
-          <div className="flex items-center gap-2 text-[#ff8a3d]">
-            <span>SCROLL TO OPEN PORTAL</span>
-            <span className="inline-block animate-bounce">↓</span>
+          {/* Achievement Badges */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="rounded-lg border border-[rgba(255,90,31,0.25)] bg-[#101010]/80 px-2.5 py-1 backdrop-blur-sm">
+              <span className="text-[9px] text-[#8c8984]">UNVIBECODE 2026: </span>
+              <span className="font-semibold text-[#ff5a1f]">Top 100 (92nd Rank)</span>
+            </div>
+            <div className="rounded-lg border border-[rgba(243,240,234,0.1)] bg-[#101010]/80 px-2.5 py-1 backdrop-blur-sm">
+              <span className="text-[9px] text-[#8c8984]">TCS CODEVITA S13: </span>
+              <span className="font-semibold text-[#f3f0ea]">Rank 7907 Global</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 text-[#ff8a3d]">
+              <span>SCROLL TO OPEN PORTAL</span>
+              <span className="inline-block animate-bounce">↓</span>
+            </div>
+
             <Link
               href="/work"
               className="rounded-full border border-[#ff5a1f] bg-[#ff5a1f] px-4 py-1.5 font-semibold text-[#070707] transition-all hover:bg-transparent hover:text-[#ff5a1f]"
