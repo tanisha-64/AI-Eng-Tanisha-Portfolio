@@ -1,14 +1,15 @@
 # Tanisha Gupta — Portfolio
 
-A production Next.js (App Router + TypeScript + Tailwind + Framer Motion) portfolio built around the "Intelligence in Motion" creative direction: obsidian black + warm white + inferno orange, editorial typography, interactive scroll-driven Portal Hero, macOS Magnification Dock navigation, an AI Twin chat assistant, interactive motion, detailed project case studies, and a real contact form.
+A production Next.js (App Router + TypeScript + Tailwind + Framer Motion + Three.js WebGL) portfolio built around the "Intelligence in Motion" creative direction: obsidian black + warm white + inferno orange, editorial typography, interactive scroll-driven Portal Hero, global WebGL Liquid Ether fluid background, macOS Magnification Dock navigation, an AI Twin chat assistant, interactive motion, detailed project case studies, and a real contact form.
 
 ## What's fully working right now
 
-- **Interactive Portal Hero**: Center-parting black portal panels with scroll-driven reveal, symmetrical side-by-side **TANISHA GUPTA** typography, medium portrait presentation, and live achievement badges (**UNVIBECODE 2026 Top 100** & **TCS CODEVITA S13 Rank 7907**).
-- **macOS Magnification Dock**: Desktop navigation menu with smooth physics-based cursor proximity magnification.
-- **AI Twin Chat Assistant**: AI assistant powered by Groq and a curated portfolio knowledge base (`data/knowledge-base/*.md`) with privacy protection (direct email & LinkedIn sharing).
-- **Pages & Routes**: Home, About, Work, Research, Journey, Contact, Resume, and 3 project detail pages (`/projects/ragtrack`, `/projects/codementor-ai`, `/projects/ai-video-intelligence`).
-- **Motion & Interactions**: Sticky-stacking project cards, scroll-reveal text, magnetic buttons, custom cursor, and dynamic ambient glows.
+- **Global Liquid Ether WebGL Fluid Background**: Real-time fluid dynamics simulation using Three.js, double-buffered ping-pong FBOs, BFECC advection, vorticity confinement, autonomous idle flow (`autoDemo`), obsidian & inferno orange palette, and cursor interaction.
+- **Interactive Portal Hero**: Center-parting black portal panels with scroll-driven reveal, symmetrical side-by-side **TANISHA GUPTA** typography with equal margins from the center line, medium portrait presentation, and live achievement badges.
+- **macOS Magnification Dock Navigation**: Desktop navigation bar with physics-based proximity magnification on hover.
+- **AI Twin Chat Assistant**: AI assistant powered by Groq and a curated portfolio knowledge base (`data/knowledge-base/*.md`) with strict privacy protection (direct email & LinkedIn sharing only).
+- **Comprehensive Routes**: Home, About, Work, Research, Journey, Contact, Resume, and 3 project detail case studies (`/projects/ragtrack`, `/projects/codementor-ai`, `/projects/ai-video-intelligence`).
+- **Interactive Motion**: Sticky-stacking project cards, scroll-reveal text, magnetic buttons, custom cursor, and dynamic ambient glows.
 - **Contact Form**: Client-side and server-side validation with Resend integration for real email delivery.
 - **Accessibility & Responsiveness**: Fully responsive layout with mobile drawer, reduced-motion support, and keyboard accessibility.
 - **Production Deployment**: Optimized for Vercel deployment with 100% build & TypeScript validation.
@@ -34,6 +35,20 @@ public/resume/Tanisha_Gupta_Resume.pdf
 ```
 
 The `/resume` page and header/hero quick links provide access to view and download the resume.
+
+## WebGL Liquid Ether Background
+
+The background fluid simulation is implemented in:
+
+```text
+components/background/LiquidEtherBackground.tsx
+```
+
+### Features:
+- **Simulation Pipeline**: Advection (BFECC) → Vorticity Confinement → Divergence → Jacobi Pressure Solve (18 iterations) → Gradient Subtraction → Color Display.
+- **Palette Tokens**: Obsidian black base (`#050505`), deep ember (`#5B170E`), inferno orange (`#FF5A1F`), amber glow (`#FF8A3D`), and subtle warm highlight (`#F3F0EA`).
+- **Performance**: Managed through `IntersectionObserver` and `visibilitychange` (pauses rendering when tab is hidden or offscreen), responsive resolution scaling (Desktop ~0.55, Tablet ~0.45, Mobile ~0.35).
+- **Z-Index Layering**: Runs on `pointer-events: none` at `z-0` beneath all interactive elements.
 
 ## AI Twin & Privacy Architecture
 
@@ -176,6 +191,7 @@ app/                              Routes and backend endpoints
   sitemap.ts                      Sitemap configuration
 
 components/
+  background/                     Global WebGL Liquid Ether fluid background
   navigation/                     Navigation (with macOS Magnification Dock)
   hero/                           PortalHero with scroll-reveal & side-by-side wordmark
   motion/                         Scroll / text reveal animations
