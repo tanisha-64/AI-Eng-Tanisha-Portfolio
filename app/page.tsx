@@ -1,16 +1,15 @@
 import Link from "next/link";
-
 import { Reveal, RevealText } from "@/components/motion/Reveal";
 import Capabilities from "@/components/sections/Capabilities";
 import Marquee from "@/components/sections/Marquee";
-import Hero from "@/components/hero/Hero";
+import PortalHero from "@/components/hero/PortalHero";
 import { profile } from "@/data/profile";
 
 export default function HomePage() {
   return (
     <main className="relative z-10">
-      {/* ───────────────────── Hero ───────────────────── */}
-      <Hero />
+      {/* ───────────────────── Portal Hero ───────────────────── */}
+      <PortalHero />
 
       {/* ───────────────────── Tech / Visual Marquee ───────────────────── */}
       <Marquee />

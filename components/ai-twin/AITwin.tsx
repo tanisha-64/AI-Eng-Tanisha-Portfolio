@@ -8,7 +8,6 @@ import {
   type FormEvent,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { profile } from "@/data/profile";
 
 interface Message {
@@ -58,12 +57,10 @@ export default function AITwin() {
     setOpen(true);
   }, []);
 
-  // Open AI Twin from Navigation.
+  // Open AI Twin from Navigation or custom events.
   useEffect(() => {
     const handleOpen = () => openTwin();
-
     window.addEventListener("open-ai-twin", handleOpen);
-
     return () => {
       window.removeEventListener("open-ai-twin", handleOpen);
     };
@@ -79,9 +76,13 @@ export default function AITwin() {
       }
     };
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open, loading, close]);
@@ -119,7 +120,6 @@ export default function AITwin() {
       }
 
       const userMessage = createMessage("user", cleanText);
-
       const nextMessages = [...messages, userMessage].slice(-MAX_MESSAGES);
 
       setMessages(nextMessages);
@@ -172,7 +172,7 @@ export default function AITwin() {
         console.error("AI Twin request failed:", error);
 
         setError(
-          "Couldn't reach the AI Twin right now. Please try again, or reach Tanisha directly."
+          "Couldn't reach the AI Twin right now. Please reach Tanisha directly via email at mitanisha74@gmail.com."
         );
       } finally {
         setLoading(false);
@@ -194,18 +194,20 @@ export default function AITwin() {
           type="button"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
           onClick={openTwin}
           data-cursor="ai"
           aria-label="Open Tanisha's AI Twin"
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-5 py-3.5 font-mono-label text-[11px] tracking-[0.15em] md:hidden"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-5 py-3.5 font-mono text-[11px] tracking-[0.15em] md:hidden"
           style={{
             background: "var(--accent)",
             color: "var(--bg-primary)",
+            boxShadow: "0 0 25px rgba(255,90,31,0.4)",
           }}
         >
-          AI TWIN ✦
+          <span>AI TWIN</span>
+          <span>✦</span>
         </motion.button>
       )}
 
@@ -222,8 +224,9 @@ export default function AITwin() {
               onClick={close}
               className="fixed inset-0 z-50 cursor-default border-0"
               style={{
-                background: "rgba(7, 7, 7, 0.72)",
-                backdropFilter: "blur(6px)",
+                background: "rgba(7, 7, 7, 0.76)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
               }}
             />
 
@@ -234,7 +237,7 @@ export default function AITwin() {
               aria-labelledby="ai-twin-title"
               initial={{
                 opacity: 0,
-                y: 40,
+                y: 35,
                 scale: 0.97,
               }}
               animate={{
@@ -248,24 +251,25 @@ export default function AITwin() {
                 scale: 0.97,
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.28,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="fixed bottom-0 left-0 right-0 z-50 flex flex-col overflow-hidden rounded-t-3xl md:bottom-8 md:left-auto md:right-8 md:w-[420px] md:rounded-3xl"
+              className="fixed bottom-0 left-0 right-0 z-50 flex flex-col overflow-hidden rounded-t-3xl md:bottom-8 md:left-auto md:right-8 md:w-[430px] md:rounded-3xl"
               style={{
                 height: "min(640px, 88dvh)",
                 background: "var(--bg-secondary)",
                 border: "1px solid var(--line)",
+                boxShadow: "0 25px 60px rgba(0,0,0,0.85), 0 0 30px rgba(255,90,31,0.2)",
               }}
             >
               {/* Header */}
               <header
-                className="flex items-center justify-between border-b px-6 py-5"
+                className="flex items-center justify-between border-b px-6 py-4"
                 style={{ borderColor: "var(--line)" }}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className="flex h-9 w-9 items-center justify-center rounded-full font-mono-label text-xs"
+                    className="flex h-9 w-9 items-center justify-center rounded-full font-mono text-xs font-bold"
                     style={{
                       background: "var(--accent)",
                       color: "var(--bg-primary)",
@@ -284,7 +288,7 @@ export default function AITwin() {
                     </h2>
 
                     <p
-                      className="mt-0.5 flex items-center gap-1.5 font-mono-label text-[10px] tracking-[0.12em]"
+                      className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em]"
                       style={{ color: "var(--text-muted)" }}
                     >
                       <span
@@ -292,7 +296,7 @@ export default function AITwin() {
                         style={{ background: "#4ADE80" }}
                         aria-hidden="true"
                       />
-                      GROUNDED · NO INVENTED FACTS
+                      GROUNDED · VERIFIED CONTEXT
                     </p>
                   </div>
                 </div>
@@ -302,14 +306,14 @@ export default function AITwin() {
                   onClick={close}
                   disabled={loading}
                   aria-label="Close AI Twin"
-                  className="flex h-9 w-9 items-center justify-center rounded-full text-lg transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-lg transition-opacity hover:opacity-70 disabled:cursor-not-allowed"
                   style={{ color: "var(--text-muted)" }}
                 >
-                  ×
+                  ✕
                 </button>
               </header>
 
-              {/* Conversation */}
+              {/* Conversation Messages */}
               <div
                 ref={scrollRef}
                 className="flex-1 space-y-4 overflow-y-auto px-6 py-5"
@@ -336,6 +340,7 @@ export default function AITwin() {
                           className="rounded-xl border px-4 py-2.5 text-left text-[13px] transition-colors hover:border-[var(--accent)] disabled:cursor-not-allowed disabled:opacity-50"
                           style={{
                             borderColor: "var(--line)",
+                            background: "rgba(7,7,7,0.4)",
                             color: "var(--text-primary)",
                           }}
                         >
@@ -420,7 +425,7 @@ export default function AITwin() {
                 )}
               </div>
 
-              {/* Input */}
+              {/* Input Bar */}
               <form
                 onSubmit={handleSubmit}
                 className="flex items-center gap-2 border-t p-4"
@@ -446,12 +451,11 @@ export default function AITwin() {
                 <button
                   type="submit"
                   disabled={loading || !input.trim()}
-                  className="shrink-0 rounded-xl px-4 py-2.5 font-mono-label text-[11px] tracking-[0.15em] transition-opacity disabled:cursor-not-allowed"
+                  className="shrink-0 rounded-xl px-4 py-2.5 font-mono text-[11px] tracking-[0.15em] transition-opacity disabled:cursor-not-allowed"
                   style={{
                     background: "var(--accent)",
                     color: "var(--bg-primary)",
-                    opacity:
-                      loading || !input.trim() ? 0.45 : 1,
+                    opacity: loading || !input.trim() ? 0.45 : 1,
                   }}
                 >
                   {loading ? "..." : "SEND"}

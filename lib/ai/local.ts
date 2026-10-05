@@ -12,7 +12,7 @@ function cleanChunk(text: string): string {
 }
 
 const FALLBACK_MESSAGE =
-  "I don't have enough verified information about that — feel free to reach out to Tanisha directly.";
+  "I don't have enough verified information about that — feel free to reach out to Tanisha directly at mitanisha74@gmail.com.";
 
 export const localProvider: AIProvider = {
   name: "local",
@@ -29,10 +29,23 @@ export const localProvider: AIProvider = {
       .reverse()
       .find((message) => message.role === "user");
 
-    const query = lastUserMessage?.content?.trim();
+    const query = lastUserMessage?.content?.trim() || "";
 
     if (!query) {
       return FALLBACK_MESSAGE;
+    }
+
+    const lowerQuery = query.toLowerCase();
+    if (
+      lowerQuery.includes("contact") ||
+      lowerQuery.includes("phone") ||
+      lowerQuery.includes("number") ||
+      lowerQuery.includes("call") ||
+      lowerQuery.includes("mobile") ||
+      lowerQuery.includes("reach") ||
+      lowerQuery.includes("email")
+    ) {
+      return "For inquiries and contact, you can reach Tanisha directly via email at mitanisha74@gmail.com or connect on LinkedIn (https://www.linkedin.com/in/tanishagupta71/).";
     }
 
     const matches = retrieve(query, 2);

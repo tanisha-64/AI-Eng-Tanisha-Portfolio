@@ -17,7 +17,7 @@ Core Skills:
 
 Contact Information:
 - Email: mitanisha74@gmail.com
-- Phone: +91-6306662997
+- Contact Policy: For all inquiries, discussions, collaborations, and opportunities, please reach out via email at mitanisha74@gmail.com or via LinkedIn.
 - Location: India
 - LinkedIn: https://www.linkedin.com/in/tanishagupta71/
 - GitHub: https://github.com/tanisha-64
