@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import AITwin from "@/components/ai-twin/AITwin";
+import LiquidEtherBackground from "@/components/background/LiquidEtherBackground";
 import Navigation from "@/components/navigation/Navigation";
 import CustomCursor from "@/components/ui/CustomCursor";
 import { SITE_CONFIG } from "@/lib/config";
@@ -53,7 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased">
-        {/* Visual atmosphere */}
+        {/* Global Liquid Ether WebGL Fluid Background */}
+        <LiquidEtherBackground />
+
+        {/* Visual atmosphere grain */}
         <div
           className="grain"
           aria-hidden="true"
@@ -66,7 +70,7 @@ export default function RootLayout({
         <Navigation />
 
         {/* Page content wrapper */}
-        <div className="min-h-screen">
+        <div className="relative z-10 min-h-screen">
           {children}
         </div>
 
